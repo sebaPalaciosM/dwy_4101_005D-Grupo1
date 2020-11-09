@@ -1,0 +1,36 @@
+{% extends "plantillaBase2.html" %}
+{% block titulo %}
+	{{ 'Login' }}
+{% endblock %}
+{% block titulo2 %}
+	{{ 'Autenticado de Usuarios' }}
+{% endblock %}
+{% block contenido %}
+	{% if form.errors %}
+		<div class="row justify-content-center">
+			<h6>Usuario o Clave NO validos</h6>
+		</div>
+	{% endif %}
+	<form action="{% url 'login' %}" method="POST">
+		{% csrf_token %}
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-1">Email</div>		
+			<div class="col-12 col-sm-3">
+				<input type="text" name="username" class="form-control">
+			</div>		
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-1">Clave</div>		
+			<div class="col-12 col-sm-3">
+				<input type="password" name="password" class="form-control">
+			</div>		
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-1">Opciones</div>		
+			<div class="col-12 col-sm-3">
+				<input type="submit" class="btn btn-danger" value="Enviar">
+				<input type="hidden" name="next" value="{{ next }}">
+			</div>			
+		</div>
+	</form>
+{% endblock %}

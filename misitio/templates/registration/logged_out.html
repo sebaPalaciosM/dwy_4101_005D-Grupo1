@@ -1,0 +1,16 @@
+{% extends "plantillaBase2.html" %}
+{% block titulo %}
+	{{ 'Login' }}
+{% endblock %}
+{% block titulo2 %}
+	{{ 'Autenticado de Usuarios' }}
+{% endblock %}
+{% block contenido %}
+<div class="row justify-content-center">
+	<div class="row justify-content-center col-12 col-sm-12"><h6>Sesión Cerrada</h5></div>
+	<br>
+	<div>
+	<a href="{% url 'login' %} ">Presione Aqui Para Iniciar Sesión</a>
+	</div>
+</div>
+{% endblock %}

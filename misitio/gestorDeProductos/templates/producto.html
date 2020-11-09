@@ -1,0 +1,143 @@
+{% extends "plantillaBase.html" %}
+{% block titulo %}
+	<h1>Registro de Producto</h1>
+{% endblock %}
+{% block contenido %}
+	<form action="{% url 'producto' %}" method="POST">
+	{% csrf_token %}
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				id
+			</div>
+			<div class="col-8 col-sm-4">
+				<input type="text" name="txtId" class="form-control" value="{{ item.id }}">
+			</div>
+			<div class="col-8 col-sm-2">
+				<input type="submit" name="btnBuscar" class="btn btn-success btn-block" value="Buscar">
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Marca
+			</div>
+			<div class="col-12 col-sm-6">
+				<select name ="cmbMarca" class="form-control">
+					<option value="0">Seleccionar</option>
+{% if cmbMarca %}
+{% for fila in cmbMarca %}
+					<option value="{{ fila.id }}">{{ fila.nombre }} </option>
+{% endfor %}
+{% endif %}				
+				</select>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Categoria
+			</div>
+			<div class="col-12 col-sm-6">
+				<select name ="cmbCategoria" class="form-control">
+					<option value="0">Seleccionar</option>
+{% if cmbCategoria %}
+{% for fila in cmbCategoria %}
+					<option value="{{ fila.id }}">{{ fila.nombre }} </option>
+{% endfor %}
+{% endif %}
+				
+				</select>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Codigo
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="text" name="txtCodigo" class="form-control" value="{{ item.codigo }}">
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Descripcion
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="text" name="txtDescripcion" class="form-control" value="{{ item.descripcion }}">
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Precio Costo
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="text" name="txtPrecioCosto" class="form-control" value="{{ item.precioCosto }}">
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Precio Venta
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="text" name="txtPrecioVenta" class="form-control" value="{{ item.precioVenta }}">
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Stock
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="text" name="txtStock" class="form-control" value="{{ item.stock }}">
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Opciones
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="submit" name="btnGrabar" class="btn btn-success" value="Grabar">
+				<input type="submit" name="btnListar" class="btn btn-success" value="Listar">
+{% if item.id > 0 %}				
+				<input type="submit" name="btnEliminar" class="btn btn-danger float-right" value="Eliminar">
+{% endif %}	
+			</div>
+		</div>
+	
+	</form>
+	
+{% endblock %}
+
+{% block listado %}
+{% if lista %}
+<div class="row justify-content-center">
+	<div>
+		<div class="table-responsive">
+			<table class="table">
+				<thead class="table-active">
+					<th>#</th>
+					<th>Categoria</th>
+					<th>Descripcion</th>
+					<th>Marca</th>
+					<th>Codigo</th>					
+					<th>Precio Costo</th>
+					<th>Precio Venta</th>
+					<th>Stock</th>
+				</thead>
+				<tbody>
+{% for fila in lista %}
+					<tr>
+						<td>{{ fila.id }}</td>
+						<td>{{ fila.categoria }}</td>						
+						<td>{{ fila.descripcion }}</td>
+						<td>{{ fila.marca }}</td>
+						<td>{{ fila.codigo }}</td>						
+						<td>{{ fila.precioCosto }}</td>
+						<td>{{ fila.precioVenta }}</td>					
+						<td>{{ fila.stock }}</td>					
+					</tr>
+{% endfor %}			
+				</tbody>
+			</table>	
+		</div>
+	</div>
+</div>	
+	
+{% endif %}
+{% endblock %}
