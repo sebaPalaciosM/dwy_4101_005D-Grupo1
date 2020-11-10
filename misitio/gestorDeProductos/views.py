@@ -8,6 +8,18 @@ from django.contrib.auth.hashers import make_password
 # Create your views here.
 def plantillaBase(request):
     return render(request, 'plantillaBase.html', {})
+ 
+def inicio(request):   
+    lista = Producto.objects.all()
+    
+    contexto = {'lista': lista}
+    return render(request, 'inicio.html', contexto)
+    
+def sucursales(request):
+    
+    lista = Sucursal.objects.all()
+    contexto = {'lista': lista}
+    return render(request, 'sucursales.html', contexto)
     
 def registro(request): 
    
