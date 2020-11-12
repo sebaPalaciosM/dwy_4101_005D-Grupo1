@@ -1,4 +1,5 @@
 {% extends "plantillaBase3.html" %}
+{% load static %}
 {% block titulo %}
 	<h1>{{ 'Sucursales' }}</h1>
 {% endblock %}
@@ -6,25 +7,22 @@
 	<h1>{{ 'Sucursales' }}</h1>
 {% endblock %}
 {% block contenido %}
-{% endblock %}
 
-{% block listado %}
-<div class="row col-10 row-cols-1 row-cols-md-3 offset-2">	
+
+<div class="row col-8 row-cols-1 row-cols-md-3 offset-2">	
 {% for fila in lista %}
-	<div class="col mb-4 col-12 col-sm-6  col-md-6  col-xl-3">
+	<div class="col mb-4 col-12 col-sm-6 col-xl-3">
 		<div class="card" style="border-color:black;">
-		<img src="Imagenes/soprole.png" height="200" class="card-img-top" alt="...">
-		<div class="card-body" style=" border-color:black;">
-			<h2 class="row card-title justify-content-center">{{ fila.nombre}}</h2>
-			<p class="row card-text "><h6 class="row">Direccion :{{ fila.direccion }}</h6></p>
-			<p class="row card-text "><h6 class="row">Telefono:{{ fila.telefono }}</h6></p>
-			<button class="form-control btnAnadir" name="btnAnadir" style="background-color:#00FECC; border-color:black;color:black;">Añadir</button>
-		</div>
+		<img src="{%static 'images/'|add:fila.nombre|add:'.png' %}" height="200" class="card-img-top" alt="...">
+			<div class="card-body" style=" border-color:black;">
+				<h5 class="row card-title justify-content-center">{{ fila.nombre }}</h5>
+				<p class="row card-text "><h6 class="row justify-content-center">Direccion: {{ fila.direccion }}</h6></p>
+				<p class="row card-text "><h6 class="row justify-content-center">Telefono: {{ fila.telefono }}</h6></p>
+			</div>
 		</div>
 	</div>
 {% endfor %}			
 </div>
 {% endblock %}
-
 
 

@@ -190,6 +190,7 @@ def producto(request):
         stock        = int("0" + request.POST["txtStock"])
         
         if 'btnGrabar' in request.POST:
+            
             marca = Marca.objects.get(pk = idMarca)
             categoria = Categoria.objects.get(pk = idCategoria)
             if id < 1:                
@@ -218,7 +219,7 @@ def producto(request):
                 item = {}
             
         elif 'btnListar' in request.POST:
-            lista = Producto.objects.filter(codigo__contains = codigo, descripcion__contains= descripcion)
+            lista = Producto.objects.all()
         #   lista = Producto.objects.all()
         
         elif 'btnEliminar' in request.POST:
